@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sport in Victoria — AusPlay 2025</title>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+ 
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    body {
+      background: #0f172a;
+      color: #e2e8f0;
+      font-family: sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+ 
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+      color: #f1f5f9;
+    }
+ 
+    p.subtitle {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-bottom: 32px;
+    }
+ 
+    #vis {
+      width: 100%;
+      max-width: 900px;
+    }
+  </style>
+</head>
+<body>
+ 
+  <h1>Sport Participation in Victoria</h1>
+  <p class="subtitle">AusPlay Data · January–December 2025</p>
+ 
+  <div id="vis"></div>
+ 
+  <script>
+    vegaEmbed('#vis', 'code.json', { actions: false })
+      .catch(console.error);
+  </script>
+ 
+</body>
+</html>
