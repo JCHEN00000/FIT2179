@@ -205,27 +205,101 @@
     <header class="hero reveal">
       <span class="eyebrow">AusPlay Survey · Victoria</span>
       <h1>How Victoria <em>moves</em>: a portrait of who plays, and who's left out</h1>
-      <p class="lede">
-        Drawing on the national <strong>AusPlay</strong> participation survey, this visualisation maps where
-        Victorians are active, who takes part across age, gender and circumstance, how often they move, and the
-        <strong>motivations and barriers</strong> that shape it all. Most activity is now informal — and access
-        is far from equal.
+      
+  <div class="hero-stat">
+  <span class="hero-number">88%</span>
+  <span class="hero-caption">
+    of Victorian adults participated in physical activity during 2025
+  </span>
+</div>
+
+<p class="lede">
+  While participation is high overall, the AusPlay survey reveals
+  substantial inequalities across income, education, disability status
+  and geographic location. This visualisation explores where Victorians
+  are active, who participates, and which groups continue to face
+  barriers to regular physical activity.
+</p>
       </p>
       <div class="meta-row">
         <div class="meta"><span class="k">Coverage</span><span class="v">Jan – Dec 2025</span></div>
         <div class="meta"><span class="k">Geography</span><span class="v">State of Victoria</span></div>
-        <div class="meta"><span class="k">Dimensions</span><span class="v">12 charts</span></div>
+        <div class="meta"><span class="k">Dimensions</span><span class="v">11 charts</span></div>
       </div>
     </header>
 
     <div id="charts"></div>
+<section class="section reveal">
 
+  <div class="section-head">
+
+    <div class="num">06</div>
+
+    <div class="txt">
+
+      <h2 class="section-title">
+        Key Findings
+      </h2>
+
+      <p class="section-note">
+        What does the AusPlay data reveal about participation in Victoria?
+      </p>
+
+      <div class="insight-box">
+        Participation is high overall, but significant inequalities remain across geography, income, education and disability status.
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card wide">
+
+    <div class="desc"
+         style="border-top:none;margin-top:0;padding-top:0;font-size:1rem;">
+
+      <p>
+        <strong>First</strong>, participation is widespread across Victoria,
+        with almost nine in ten adults engaging in physical activity each year.
+      </p>
+
+      <br>
+
+      <p>
+        <strong>Second</strong>, informal activities such as walking,
+        fitness training and recreational exercise now play a larger role
+        than traditional organised sport.
+      </p>
+
+      <br>
+
+      <p>
+        <strong>Third</strong>, participation opportunities are not equally
+        distributed. Lower-income households, people with disabilities,
+        Aboriginal and Torres Strait Islander Australians, and residents
+        of remote regions consistently report lower participation levels.
+      </p>
+
+      <br>
+
+      <p>
+        These findings suggest future policy should focus not only on
+        increasing participation, but also on improving accessibility,
+        affordability and inclusion for underrepresented groups.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
     <footer class="reveal">
       <div class="ftitle">About this visualisation</div>
 <footer class="dashboard-footer">
-      <p><strong>Author:</strong> John Chen</p>
+      <p><strong>Author:</strong> John Chen</p> <p><strong>Date:</strong> May 2026</p>
+
       
-      <p><strong>Source:</strong> AusPlay participation data (Australian Sports Commission), Victoria. Figures are illustrative of survey-reported participation rates and estimated participant counts. Hover any chart for detail. source: https://www.ausport.gov.au/clearinghouse/research/ausplay/results </p>
+      <p><strong>Source:</strong> AusPlay participation data (Australian Sports Commission), Victoria. Figures are illustrative of survey-reported participation rates and estimated participant counts. Hover any chart for detail. source link: https://www.ausport.gov.au/clearinghouse/research/ausplay/results </p>
       <p><strong>AI Acknowledgement:</strong> I have used AI tools such as ChatGPT, Claude, and Gemini to help polish the HTML output and construct this poster.</p>
     </footer>
 
@@ -233,53 +307,60 @@
 
   <script>
     /* SECTIONS — "charts" lists chart titles (must match code.json exactly). */
-    const SECTIONS = [
-      {
-        title: "Where People Are Active",
-        note: "The settings Victorians use to be active, and how participation varies across the state.",
-        charts: [
-          "Victoria — Participation Rate by Remoteness Area",
-          "Where Adults are Active"
-        ]
-      },
-      {
-        title: "Who Takes Part",
-        note: "How participation breaks down across age and gender — and how those two dimensions interact.",
-        charts: [
-          "Participation Rate & Estimated Participants by Age",
-          "Gender Split of Participants by Age Group",
-          "Participation Heatmap (Age × Gender)",
-          "Year-over-Year Participation Growth"
-        ]
-      },
-      {
-        title: "Equity & Circumstance",
-        note: "Participation is not equal — income, education, disability status and Indigenous identity all shape who gets active.",
-        charts: [
-          "Participation Rate by Household Income",
-          "Participation Rate by Education Level",
-          "Participation Rate: Disability & ATSI Status"
-        ]
-      },
-      {
-        title: "How Often, and in What",
-        note: "How frequently Victorians are active, and which activities they actually take up.",
-        charts: [
-          "Adults Reaching Each Frequency Threshold",
-          "Top Activities by Participation Rate",
-          "Activity Type Mix by Age Group"
-        ]
-      },
-      {
-        title: "Why They Take Part — and Why They Don't",
-        note: "The motivations that draw people in, set against the barriers that keep them out.",
-        charts: [
-          "Top Motivations for Participation",
-          "Top Barriers to Participation by Gender"
-        ]
-      }
-    ];
+const SECTIONS = [
+{
+  title: "Participation Is Highest In Victoria's Urban Centres",
+  note: "The settings Victorians use to be active, and how participation varies across the state.",
+  insight: "Geography influences participation. Major cities record the highest activity levels, while remote communities face lower participation rates due to reduced access and infrastructure.",
+  charts: [
+    "Victoria — Participation Rate by Remoteness Area",
+    "Where Adults are Active"
+  ]
+},
 
+{
+  title: "Most Victorians Participate — But Age And Gender Matter",
+  note: "How participation breaks down across age and gender.",
+  insight: "Participation remains high throughout adulthood, but begins to decline among older populations. Gender differences are relatively small compared with age-related changes.",
+  charts: [
+    "Participation Rate & Estimated Participants by Age",
+    "Gender Split of Participants by Age Group",
+    "Participation Heatmap (Age × Gender)"
+  ]
+},
+
+{
+  title: "Income, Education And Disability Shape Participation",
+  note: "Participation is not equally distributed across Victoria.",
+  insight: "Socioeconomic factors produce some of the largest participation gaps in the dataset. Income, education and disability status all strongly influence activity levels.",
+  charts: [
+    "Participation Rate by Household Income",
+    "Participation Rate by Education Level",
+    "Participation Rate: Disability & ATSI Status"
+  ]
+},
+
+{
+  title: "Informal Activities Now Dominate Victorian Participation",
+  note: "How often Victorians participate and which activities they choose.",
+  insight: "Walking, fitness and recreational activities now dominate participation, indicating a shift away from traditional organised sport.",
+  charts: [
+    "Adults Reaching Each Frequency Threshold",
+    "Top Activities by Participation Rate",
+    "Activity Type Mix by Age Group"
+  ]
+},
+
+{
+  title: "Health Drives Participation, Yet Health Is Also The Biggest Barrier",
+  note: "Motivations and barriers often reflect the same underlying concerns.",
+  insight: "Physical and mental wellbeing encourage participation, but poor health, injury and ageing remain the most common reasons people stop being active.",
+  charts: [
+    "Top Motivations for Participation",
+    "Top Barriers to Participation by Gender"
+  ]
+}
+];
     /* PER-CHART DESCRIPTIONS — keys must match titles in code.json. */
     const DESCRIPTIONS = {
       "Participation Rate & Estimated Participants by Age":
@@ -307,9 +388,7 @@
       "Where Adults are Active":
         "Public spaces (63%) are where most adults get active — parks, trails and streets dominate. Gyms/leisure centres and home environments are roughly equal. Formal clubs account for under 20%, confirming that informal activity far outweighs organised sport.",
       "Victoria — Participation Rate by Remoteness Area":
-        "Participation is strongest in Melbourne (88.2%) and steps down as remoteness increases — reaching just 76.3% in remote areas like Mildura. Geographic isolation, fewer facilities, and transport constraints all limit access for regional Victorians.",
-      "Year-over-Year Participation Growth":
-        "Net annual change in participation rate from 2021 to 2026, by gender. Growth has been steady and positive for both groups, with the female rate gradually closing the gap on the male rate."
+        "Participation is strongest in Melbourne (88.2%) and steps down as remoteness increases — reaching just 76.3% in remote areas like Mildura. Geographic isolation, fewer facilities, and transport constraints all limit access for regional Victorians."
     };
 
     function titleOf(t){ return (t && typeof t === 'object') ? t.text : t; }
@@ -397,12 +476,29 @@
           note.textContent = meta.note;
           txt.appendChild(note);
         }
+        if(meta.insight){
+  const insight = document.createElement('div');
+  insight.className = 'insight-box';
+  insight.textContent = meta.insight;
+  txt.appendChild(insight);
+        }
         head.appendChild(txt);
         section.appendChild(head);
 
         const rowEl = document.createElement('div');
         rowEl.className = 'row';
         chartObjs.forEach(c => makeCard(c, rowEl));
+
+        // If the last card would be alone in a row (odd number of grid cells,
+        // counting a .wide card as two), stretch it full-width so there is no
+        // empty column on the right.
+        const placed = Array.from(rowEl.children);
+        let cells = 0;
+        placed.forEach(c => { cells += c.classList.contains('wide') ? 2 : 1; });
+        if (cells % 2 === 1 && placed.length) {
+          placed[placed.length - 1].classList.add('wide');
+        }
+
         section.appendChild(rowEl);
         container.appendChild(section);
       }
