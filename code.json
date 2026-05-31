@@ -1,416 +1,1922 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "background": {
-    "gradient": "linear",
-    "x1": 0, "y1": 0, "x2": 0, "y2": 1,
-    "stops": [
-      {"offset": 0, "color": "#0f172a"},
-      {"offset": 0.5, "color": "#1e293b"},
-      {"offset": 1, "color": "#0f172a"}
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "background": "transparent",
+ "spacing": 30,
+ "padding": {
+  "top": 40,
+  "bottom": 40,
+  "left": 30,
+  "right": 30
+ },
+ "resolve": {
+  "scale": {
+   "color": "independent",
+   "size": "independent"
+  }
+ },
+ "config": {
+  "font": "Public Sans, system-ui, sans-serif",
+  "view": {
+   "stroke": "transparent",
+   "fill": "transparent"
+  },
+  "title": {
+   "fontSize": 15,
+   "fontWeight": 700,
+   "color": "#f8fafc",
+   "anchor": "start",
+   "dy": -8,
+   "font": "Fraunces, Georgia, serif",
+   "subtitleColor": "#94a3b8"
+  },
+  "axis": {
+   "labelFontSize": 11,
+   "titleFontSize": 12,
+   "labelColor": "#cbd5e1",
+   "titleColor": "#f8fafc",
+   "gridColor": "rgba(255, 255, 255, 0.08)",
+   "tickColor": "#475569",
+   "domainColor": "#475569",
+   "labelFont": "Public Sans, sans-serif",
+   "titleFont": "Public Sans, sans-serif",
+   "titleFontWeight": 600,
+   "titlePadding": 10
+  },
+  "legend": {
+   "labelColor": "#cbd5e1",
+   "titleColor": "#f8fafc",
+   "labelFontSize": 11,
+   "titleFontSize": 11,
+   "titleFontWeight": 600,
+   "labelFont": "Public Sans, sans-serif",
+   "titleFont": "Public Sans, sans-serif"
+  },
+  "text": {
+   "color": "#cbd5e1",
+   "font": "Public Sans, sans-serif"
+  }
+ },
+ "vconcat": [
+  {
+   "hconcat": [
+    {
+     "title": "Participation Rate & Estimated Participants by Age",
+     "width": 350,
+     "height": 250,
+     "data": {
+      "values": [
+       {
+        "Age": "15-17",
+        "Rate": 86.9,
+        "Participants": 229.5
+       },
+       {
+        "Age": "18-24",
+        "Rate": 87.8,
+        "Participants": 587.0
+       },
+       {
+        "Age": "25-34",
+        "Rate": 90.8,
+        "Participants": 973.8
+       },
+       {
+        "Age": "35-44",
+        "Rate": 89.1,
+        "Participants": 914.1
+       },
+       {
+        "Age": "45-54",
+        "Rate": 90.9,
+        "Participants": 787.5
+       },
+       {
+        "Age": "55-64",
+        "Rate": 89.3,
+        "Participants": 670.1
+       },
+       {
+        "Age": "65+",
+        "Rate": 79.1,
+        "Participants": 920.7
+       }
+      ]
+     },
+     "layer": [
+      {
+       "mark": {
+        "type": "bar",
+        "cornerRadiusTopLeft": 6,
+        "cornerRadiusTopRight": 6,
+        "opacity": 0.75
+       },
+       "encoding": {
+        "x": {
+         "field": "Age",
+         "type": "ordinal",
+         "sort": [
+          "15-17",
+          "18-24",
+          "25-34",
+          "35-44",
+          "45-54",
+          "55-64",
+          "65+"
+         ],
+         "axis": {
+          "title": "Age Group"
+         }
+        },
+        "y": {
+         "field": "Participants",
+         "type": "quantitative",
+         "axis": {
+          "title": "Participants (000s)",
+          "titleColor": "#60a5fa"
+         },
+         "scale": {
+          "domain": [
+           0,
+           1100
+          ]
+         }
+        },
+        "color": {
+         "value": "#1d4ed8"
+        }
+       }
+      },
+      {
+       "mark": {
+        "type": "line",
+        "point": {
+         "filled": true,
+         "size": 60
+        },
+        "strokeWidth": 3,
+        "color": "#f97316"
+       },
+       "encoding": {
+        "x": {
+         "field": "Age",
+         "type": "ordinal",
+         "sort": [
+          "15-17",
+          "18-24",
+          "25-34",
+          "35-44",
+          "45-54",
+          "55-64",
+          "65+"
+         ]
+        },
+        "y": {
+         "field": "Rate",
+         "type": "quantitative",
+         "axis": {
+          "title": "Participation Rate (%)",
+          "titleColor": "#f97316",
+          "orient": "right"
+         },
+         "scale": {
+          "domain": [
+           70,
+           100
+          ]
+         }
+        },
+        "tooltip": [
+         {
+          "field": "Age",
+          "title": "Age"
+         },
+         {
+          "field": "Rate",
+          "title": "Rate (%)"
+         },
+         {
+          "field": "Participants",
+          "title": "Participants (000s)"
+         }
+        ]
+       }
+      }
+     ],
+     "resolve": {
+      "scale": {
+       "y": "independent"
+      }
+     }
+    },
+ {
+  "title": "Gender Split of Participants by Age Group",
+  "width": 260,
+  "height": 260,
+
+  "params": [
+    {
+      "name": "ageStep",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 6,
+        "step": 1,
+        "name": "Age Group: "
+      }
+    }
+  ],
+
+  "data": {
+    "values": [
+      {"AgeIndex":0,"Age":"15–24","Gender":"Male","Amount":580},
+      {"AgeIndex":0,"Age":"15–24","Gender":"Female","Amount":540},
+
+      {"AgeIndex":1,"Age":"25–34","Gender":"Male","Amount":775},
+      {"AgeIndex":1,"Age":"25–34","Gender":"Female","Amount":765},
+
+      {"AgeIndex":2,"Age":"35–44","Gender":"Male","Amount":703},
+      {"AgeIndex":2,"Age":"35–44","Gender":"Female","Amount":717},
+
+      {"AgeIndex":3,"Age":"45–54","Gender":"Male","Amount":655},
+      {"AgeIndex":3,"Age":"45–54","Gender":"Female","Amount":680},
+
+      {"AgeIndex":4,"Age":"55–64","Gender":"Male","Amount":515},
+      {"AgeIndex":4,"Age":"55–64","Gender":"Female","Amount":565},
+
+      {"AgeIndex":5,"Age":"65+","Gender":"Male","Amount":420},
+      {"AgeIndex":5,"Age":"65+","Gender":"Female","Amount":503},
+
+      {"AgeIndex":6,"Age":"All Ages","Gender":"Male","Amount":3648},
+      {"AgeIndex":6,"Age":"All Ages","Gender":"Female","Amount":3770}
     ]
   },
-  "spacing": 30,
-  "padding": {"top": 40, "bottom": 40, "left": 30, "right": 30},
-  "resolve": {"scale": {"color": "independent", "size": "independent"}},
-  "config": {
-    "view": {"stroke": "transparent", "fill": "transparent"},
-    "title": {
-      "fontSize": 15, "fontWeight": "bold",
-      "color": "#e2e8f0", "anchor": "start", "dy": -6
-    },
-    "axis": {
-      "labelFontSize": 11, "titleFontSize": 12,
-      "labelColor": "#94a3b8", "titleColor": "#94a3b8",
-      "gridColor": "#1e3a5f", "tickColor": "#334155", "domainColor": "#334155"
-    },
-    "legend": {
-      "labelColor": "#94a3b8", "titleColor": "#94a3b8", "labelFontSize": 11
-    },
-    "text": {"color": "#e2e8f0"}
-  },
-  "vconcat": [
+
+"transform": [
     {
-      "hconcat": [
+      "filter": "datum.AgeIndex == ageStep"
+    },
+    {
+      "joinaggregate": [
         {
-          "title": "Participation Rate & Estimated Participants by Age",
-          "width": 350, "height": 250,
-          "data": {"values": [
-            {"Age": "15-17", "Rate": 86.9, "Participants": 229.5},
-            {"Age": "18-24", "Rate": 87.8, "Participants": 587},
-            {"Age": "25-34", "Rate": 90.8, "Participants": 973.8},
-            {"Age": "35-44", "Rate": 89.1, "Participants": 914.1},
-            {"Age": "45-54", "Rate": 90.9, "Participants": 787.5},
-            {"Age": "55-64", "Rate": 89.3, "Participants": 670.1},
-            {"Age": "65+",   "Rate": 79.1, "Participants": 920.7}
-          ]},
-          "layer": [
-            {
-              "mark": {"type": "bar", "cornerRadiusTopLeft": 6, "cornerRadiusTopRight": 6, "opacity": 0.75},
-              "encoding": {
-                "x": {"field": "Age", "type": "ordinal", "sort": ["15-17","18-24","25-34","35-44","45-54","55-64","65+"], "axis": {"title": "Age Group"}},
-                "y": {"field": "Participants", "type": "quantitative", "axis": {"title": "Participants (000s)", "titleColor": "#60a5fa"}, "scale": {"domain": [0, 1100]}},
-                "color": {"value": "#1d4ed8"}
-              }
-            },
-            {
-              "mark": {"type": "line", "point": {"filled": true, "size": 60}, "strokeWidth": 3, "color": "#f97316"},
-              "encoding": {
-                "x": {"field": "Age", "type": "ordinal", "sort": ["15-17","18-24","25-34","35-44","45-54","55-64","65+"]},
-                "y": {"field": "Rate", "type": "quantitative", "axis": {"title": "Participation Rate (%)", "titleColor": "#f97316", "orient": "right"}, "scale": {"domain": [70, 100]}},
-                "tooltip": [{"field": "Age", "title": "Age"}, {"field": "Rate", "title": "Rate (%)"}, {"field": "Participants", "title": "Participants (000s)"}]
-              }
-            }
-          ],
-          "resolve": {"scale": {"y": "independent"}}
-        },
-        {
-          "title": "Gender Split of Participants by Age Group",
-          "width": 230, "height": 230,
-          "data": {"values": [
-            {"Age": "15-17", "AgeIndex": 0, "Gender": "Male",   "Amount": 118.2},
-            {"Age": "15-17", "AgeIndex": 0, "Gender": "Female", "Amount": 111.3},
-            {"Age": "18-24", "AgeIndex": 1, "Gender": "Male",   "Amount": 298.2},
-            {"Age": "18-24", "AgeIndex": 1, "Gender": "Female", "Amount": 288.8},
-            {"Age": "25-34", "AgeIndex": 2, "Gender": "Male",   "Amount": 488.8},
-            {"Age": "25-34", "AgeIndex": 2, "Gender": "Female", "Amount": 485.0},
-            {"Age": "35-44", "AgeIndex": 3, "Gender": "Male",   "Amount": 454.3},
-            {"Age": "35-44", "AgeIndex": 3, "Gender": "Female", "Amount": 459.8},
-            {"Age": "45-54", "AgeIndex": 4, "Gender": "Male",   "Amount": 387.5},
-            {"Age": "45-54", "AgeIndex": 4, "Gender": "Female", "Amount": 400.0},
-            {"Age": "55-64", "AgeIndex": 5, "Gender": "Male",   "Amount": 324.3},
-            {"Age": "55-64", "AgeIndex": 5, "Gender": "Female", "Amount": 345.8},
-            {"Age": "65+",   "AgeIndex": 6, "Gender": "Male",   "Amount": 418.9},
-            {"Age": "65+",   "AgeIndex": 6, "Gender": "Female", "Amount": 501.8}
-          ]},
-          "params": [
-            {"name": "ageStep", "value": 0, "bind": {"input": "range", "min": 0, "max": 6, "step": 1, "name": "Age group \u25b6 "}}
-          ],
-          "transform": [{"filter": "datum.AgeIndex === ageStep"}],
-          "layer": [
-            {
-              "mark": {"type": "arc", "innerRadius": 62, "outerRadius": 95, "padAngle": 0.03, "cornerRadius": 3},
-              "encoding": {
-                "theta": {"field": "Amount", "type": "quantitative", "stack": true},
-                "color": {"field": "Gender", "type": "nominal", "scale": {"domain": ["Male","Female"], "range": ["#3b82f6","#f472b6"]}, "legend": {"title": "Gender", "orient": "bottom"}},
-                "tooltip": [{"field": "Age"}, {"field": "Gender"}, {"field": "Amount", "type": "quantitative", "title": "Participants (000s)", "format": ".1f"}]
-              }
-            },
-            {
-              "mark": {"type": "text", "fontSize": 22, "fontWeight": "bold", "color": "#f1f5f9", "dy": -8},
-              "encoding": {"text": {"field": "Age", "type": "nominal"}}
-            },
-            {
-              "mark": {"type": "text", "fontSize": 12, "color": "#94a3b8", "dy": 14},
-              "transform": [{"aggregate": [{"op": "sum", "field": "Amount", "as": "Total"}]}, {"calculate": "'\u2248 '+round(datum.Total)+'k active'", "as": "Lbl"}],
-              "encoding": {"text": {"field": "Lbl", "type": "nominal"}}
-            }
-          ]
+          "op": "sum",
+          "field": "Amount",
+          "as": "TotalAmount"
         }
       ]
     },
     {
-      "hconcat": [
-        {
-          "title": "Adults Reaching Each Frequency Threshold",
-          "width": 350, "height": 250,
-          "data": {"values": [
-            {"Frequency": "1+ per year",      "Rate": 87.5},
-            {"Frequency": "1+ per month",     "Rate": 82.8},
-            {"Frequency": "1+ per fortnight", "Rate": 78.7},
-            {"Frequency": "1+ per week",      "Rate": 70.5},
-            {"Frequency": "2+ per week",      "Rate": 60.9},
-            {"Frequency": "3+ per week",      "Rate": 51.7},
-            {"Frequency": "4+ per week",      "Rate": 42.5},
-            {"Frequency": "5+ per week",      "Rate": 35.5}
-          ]},
-          "layer": [
-            {
-              "mark": {"type": "line", "point": {"filled": true, "fill": "#f97316", "size": 70}, "strokeWidth": 3, "color": "#f97316"},
-              "encoding": {
-                "x": {"field": "Frequency", "type": "ordinal", "sort": ["1+ per year","1+ per month","1+ per fortnight","1+ per week","2+ per week","3+ per week","4+ per week","5+ per week"], "axis": {"title": "Frequency Threshold", "labelAngle": -30}},
-                "y": {"field": "Rate", "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": {"title": "Adults (%)"}},
-                "tooltip": [{"field": "Frequency"}, {"field": "Rate", "title": "Rate (%)"}]
-              }
-            }
-          ]
-        },
-        {
-          "title": "Top Activities by Participation Rate",
-          "width": 350, "height": 250,
-          "data": {"values": [
-            {"Sport": "Walking (Recreational)", "Value": 51.6},
-            {"Sport": "Fitness/Gym",            "Value": 35},
-            {"Sport": "Running/jogging",         "Value": 17.3},
-            {"Sport": "Bush walking",            "Value": 16.1},
-            {"Sport": "Swimming",                "Value": 13.4},
-            {"Sport": "Cycling",                 "Value": 9},
-            {"Sport": "Pilates",                 "Value": 8.3},
-            {"Sport": "Basketball",              "Value": 5.5}
-          ]},
-          "mark": {"type": "bar", "cornerRadiusEnd": 6},
-          "encoding": {
-            "y": {"field": "Sport", "type": "nominal", "sort": "-x", "axis": {"title": null}},
-            "x": {"field": "Value", "type": "quantitative", "axis": {"title": "Participation Rate (%)"}},
-            "color": {"field": "Value", "type": "quantitative", "scale": {"scheme": "blues", "reverse": false}, "legend": null},
-            "tooltip": [{"field": "Sport", "title": "Activity"}, {"field": "Value", "title": "Rate (%)"}]
-          }
-        }
-      ]
-    },
-    {
-      "hconcat": [
-        {
-          "title": "Activity Type Mix by Age Group",
-          "width": 350, "height": 250,
-          "data": {"values": [
-            {"Age": "15-17", "Type": "Sport only",     "Rate": 18.1},
-            {"Age": "15-17", "Type": "Non-sport only", "Rate": 13.1},
-            {"Age": "15-17", "Type": "Both",           "Rate": 55.7},
-            {"Age": "18-24", "Type": "Sport only",     "Rate": 20.1},
-            {"Age": "18-24", "Type": "Non-sport only", "Rate": 19.3},
-            {"Age": "18-24", "Type": "Both",           "Rate": 48.4},
-            {"Age": "25-34", "Type": "Sport only",     "Rate": 17.4},
-            {"Age": "25-34", "Type": "Non-sport only", "Rate": 25.8},
-            {"Age": "25-34", "Type": "Both",           "Rate": 47.6},
-            {"Age": "35-44", "Type": "Sport only",     "Rate": 15.6},
-            {"Age": "35-44", "Type": "Non-sport only", "Rate": 32.2},
-            {"Age": "35-44", "Type": "Both",           "Rate": 41.3},
-            {"Age": "45-54", "Type": "Sport only",     "Rate": 12.2},
-            {"Age": "45-54", "Type": "Non-sport only", "Rate": 40.2},
-            {"Age": "45-54", "Type": "Both",           "Rate": 38.5},
-            {"Age": "55-64", "Type": "Sport only",     "Rate": 6},
-            {"Age": "55-64", "Type": "Non-sport only", "Rate": 47.2},
-            {"Age": "55-64", "Type": "Both",           "Rate": 36.1},
-            {"Age": "65+",   "Type": "Sport only",     "Rate": 6.7},
-            {"Age": "65+",   "Type": "Non-sport only", "Rate": 50.8},
-            {"Age": "65+",   "Type": "Both",           "Rate": 21.6}
-          ]},
-          "mark": {"type": "bar"},
-          "encoding": {
-            "x": {"field": "Age", "type": "ordinal", "sort": ["15-17","18-24","25-34","35-44","45-54","55-64","65+"], "axis": {"title": "Age Group"}},
-            "y": {"field": "Rate", "type": "quantitative", "stack": "normalize", "axis": {"title": "Share (%)", "format": ".0%"}},
-            "color": {"field": "Type", "type": "nominal", "scale": {"domain": ["Sport only","Non-sport only","Both"], "range": ["#3b82f6","#10b981","#f59e0b"]}, "legend": {"title": "Activity type"}},
-            "tooltip": [{"field": "Age"}, {"field": "Type"}, {"field": "Rate", "title": "Rate (%)"}]
-          }
-        },
-        {
-          "title": "Top Barriers to Participation by Gender",
-          "width": 350, "height": 250,
-          "data": {"values": [
-            {"Barrier": "Poor health or injury",  "Gender": "Male",   "Rate": 20.4},
-            {"Barrier": "Poor health or injury",  "Gender": "Female", "Rate": 26.3},
-            {"Barrier": "Increasing age/too old", "Gender": "Male",   "Rate": 16.8},
-            {"Barrier": "Increasing age/too old", "Gender": "Female", "Rate": 22.4},
-            {"Barrier": "Disability",             "Gender": "Male",   "Rate": 12.9},
-            {"Barrier": "Disability",             "Gender": "Female", "Rate": 15.7},
-            {"Barrier": "Too lazy",               "Gender": "Male",   "Rate": 19},
-            {"Barrier": "Too lazy",               "Gender": "Female", "Rate": 15.2},
-            {"Barrier": "Not enough time",        "Gender": "Male",   "Rate": 13.8},
-            {"Barrier": "Not enough time",        "Gender": "Female", "Rate": 14.9},
-            {"Barrier": "Don't like it",          "Gender": "Male",   "Rate": 12.2},
-            {"Barrier": "Don't like it",          "Gender": "Female", "Rate": 19.3}
-          ]},
-          "mark": {"type": "bar", "cornerRadiusTopLeft": 4, "cornerRadiusTopRight": 4},
-          "encoding": {
-            "x": {"field": "Barrier", "type": "nominal", "axis": {"title": null, "labelAngle": -30, "labelLimit": 90}},
-            "y": {"field": "Rate", "type": "quantitative", "axis": {"title": "Non-participants (%)"}},
-            "color": {"field": "Gender", "type": "nominal", "scale": {"domain": ["Male","Female"], "range": ["#3b82f6","#f472b6"]}},
-            "xOffset": {"field": "Gender", "type": "nominal"},
-            "tooltip": [{"field": "Barrier"}, {"field": "Gender"}, {"field": "Rate", "title": "Rate (%)"}]
-          }
-        }
-      ]
-    },
-    {
-      "hconcat": [
-        {
-          "title": "Participation Rate by Household Income",
-          "width": 350, "height": 250,
-          "data": {"values": [
-            {"Income": "<$40,000",           "Rate": 76.7},
-            {"Income": "$40,000 - $69,999",  "Rate": 81.2},
-            {"Income": "$70,000 - $99,999",  "Rate": 88.1},
-            {"Income": "$100,000 - $149,999","Rate": 91.2},
-            {"Income": "$150,000 - $199,999","Rate": 94.1},
-            {"Income": "$200,000+",          "Rate": 95}
-          ]},
-          "encoding": {
-            "x": {"field": "Income", "type": "ordinal", "sort": null, "axis": {"title": "Annual Household Income", "labelAngle": -30}},
-            "y": {"field": "Rate", "type": "quantitative", "scale": {"domain": [70, 100]}, "axis": {"title": "Participation Rate (%)", "values": [70, 75, 80, 85, 90, 95, 100]}}
-          },
-          "layer": [
-            {
-              "mark": {
-                "type": "area",
-                "clip": true,
-                "line": {"color": "#a855f7", "strokeWidth": 3},
-                "point": {"filled": true, "size": 80, "fill": "#a855f7"},
-                "color": {
-                  "gradient": "linear", "x1": 0, "y1": 0, "x2": 0, "y2": 1,
-                  "stops": [
-                    {"offset": 0, "color": "rgba(168,85,247,0.55)"},
-                    {"offset": 1, "color": "rgba(168,85,247,0.05)"}
-                  ]
-                }
-              },
-              "encoding": {
-                "y2": {"datum": 70},
-                "tooltip": [{"field": "Income"}, {"field": "Rate", "title": "Rate (%)"}]
-              }
-            },
-            {
-              "mark": {"type": "text", "dy": -12, "fontSize": 11, "fontWeight": "bold", "color": "#c4b5fd"},
-              "encoding": {
-                "text": {"field": "Rate", "type": "quantitative", "format": ".1f"}
-              }
-            }
-          ]
-        },
-        {
-          "title": "Where Adults are Active",
-          "width": 350, "height": 250,
-          "data": {"values": [
-            {"Place": "Public space",                      "Rate": 63.1},
-            {"Place": "Home environment",                  "Rate": 30.4},
-            {"Place": "Gym/fitness club/leisure centre",   "Rate": 31.5},
-            {"Place": "Free community facilities",         "Rate": 21.8},
-            {"Place": "Sports club or association",        "Rate": 19.9},
-            {"Place": "Private or commercial premises",    "Rate": 17.1},
-            {"Place": "Recreation club or association",    "Rate": 9.4}
-          ]},
-          "layer": [{
-            "mark": {"type": "arc", "innerRadius": 30, "stroke": "#0f172a", "strokeWidth": 1},
-            "encoding": {
-              "theta": {"field": "Rate", "type": "quantitative", "stack": true},
-              "radius": {"field": "Rate", "type": "quantitative", "scale": {"rangeMin": 30, "rangeMax": 120}},
-              "color": {"field": "Place", "type": "nominal", "scale": {"scheme": "tableau10"}, "legend": {"title": "Venue"}},
-              "tooltip": [{"field": "Place"}, {"field": "Rate", "title": "Rate (%)"}]
-            }
-          }]
-        }
-      ]
-    },
-    {
-      "hconcat": [
-        {
-          "title": "Top Motivations for Participation",
-          "width": 350, "height": 250,
-          "data": {"values": [
-            {"Motivation": "Physical health or fitness",   "Rate": 65.6},
-            {"Motivation": "Fun/enjoyment",                "Rate": 58.1},
-            {"Motivation": "Weight management/tone",       "Rate": 52.8},
-            {"Motivation": "To be outdoors/enjoy nature",  "Rate": 50.7},
-            {"Motivation": "Social reasons",               "Rate": 44.3},
-            {"Motivation": "Mental health/therapy",        "Rate": 37.3},
-            {"Motivation": "Sense of achievement",         "Rate": 31.9},
-            {"Motivation": "Hobby",                        "Rate": 29.8}
-          ]},
-          "mark": {"type": "bar", "cornerRadiusEnd": 6},
-          "encoding": {
-            "y": {"field": "Motivation", "type": "nominal", "sort": "-x", "axis": {"title": null, "labelLimit": 160}},
-            "x": {"field": "Rate", "type": "quantitative", "axis": {"title": "Participants (%)"}},
-            "color": {"field": "Rate", "type": "quantitative", "scale": {"scheme": "greens"}, "legend": null},
-            "tooltip": [{"field": "Motivation"}, {"field": "Rate", "title": "Rate (%)"}]
-          }
-        },
-        {
-          "title": "Participation Heatmap (Age × Gender)",
-          "width": 350, "height": 250,
-          "data": {"values": [
-            {"Age": "15-17", "Gender": "Male",   "Rate": 86.1},
-            {"Age": "15-17", "Gender": "Female", "Rate": 88.4},
-            {"Age": "18-24", "Gender": "Male",   "Rate": 88.2},
-            {"Age": "18-24", "Gender": "Female", "Rate": 87.5},
-            {"Age": "25-34", "Gender": "Male",   "Rate": 91.8},
-            {"Age": "25-34", "Gender": "Female", "Rate": 89.8},
-            {"Age": "35-44", "Gender": "Male",   "Rate": 90.2},
-            {"Age": "35-44", "Gender": "Female", "Rate": 88.1},
-            {"Age": "45-54", "Gender": "Male",   "Rate": 92.3},
-            {"Age": "45-54", "Gender": "Female", "Rate": 89.5},
-            {"Age": "55-64", "Gender": "Male",   "Rate": 88.3},
-            {"Age": "55-64", "Gender": "Female", "Rate": 90.4},
-            {"Age": "65+",   "Gender": "Male",   "Rate": 81.3},
-            {"Age": "65+",   "Gender": "Female", "Rate": 77.8}
-          ]},
-          "layer": [
-            {
-              "mark": {"type": "rect"},
-              "encoding": {
-                "x": {"field": "Age", "type": "ordinal", "sort": ["15-17","18-24","25-34","35-44","45-54","55-64","65+"]},
-                "y": {"field": "Gender", "type": "nominal"},
-                "color": {"field": "Rate", "type": "quantitative", "scale": {"scheme": "viridis", "domain": [70, 100]}, "legend": {"title": "Rate (%)"}},
-                "tooltip": [{"field": "Age", "title": "Age Group"}, {"field": "Gender"}, {"field": "Rate", "title": "Rate (%)"}]
-              }
-            },
-            {
-              "mark": {"type": "text", "fontSize": 11, "fontWeight": "bold"},
-              "encoding": {
-                "x": {"field": "Age", "type": "ordinal", "sort": ["15-17","18-24","25-34","35-44","45-54","55-64","65+"]},
-                "y": {"field": "Gender", "type": "nominal"},
-                "text": {"field": "Rate", "type": "quantitative", "format": ".1f"},
-                "color": {"condition": {"test": "datum.Rate > 88", "value": "#0f172a"}, "value": "#e2e8f0"}
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "hconcat": [{
-        "title": "Victoria — Participation Rate by Remoteness Area",
-        "width": 750, "height": 380,
-        "projection": {"type": "mercator"},
-        "resolve": {"scale": {"color": "independent", "size": "independent"}},
-        "layer": [
-          {
-            "data": {
-              "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
-              "format": {"type": "json", "property": "features"}
-            },
-            "transform": [{"filter": "datum.properties.STATE_NAME == 'Victoria'"}],
-            "mark": {"type": "geoshape", "fill": "#1e3a5f", "stroke": "#334155", "strokeWidth": 2}
-          },
-          {
-            "data": {"values": [
-              {"city": "Melbourne",   "lat": -37.8136, "lon": 144.9631, "rate": 88.2},
-              {"city": "Geelong",     "lat": -38.1499, "lon": 144.3617, "rate": 85.3},
-              {"city": "Ballarat",    "lat": -37.5622, "lon": 143.8503, "rate": 85.3},
-              {"city": "Bendigo",     "lat": -36.757,  "lon": 144.2794, "rate": 85.3},
-              {"city": "Shepparton", "lat": -36.3805,  "lon": 145.3993, "rate": 84.4},
-              {"city": "Mildura",     "lat": -34.208,  "lon": 142.136,  "rate": 76.3},
-              {"city": "Traralgon",  "lat": -38.1953,  "lon": 146.5415, "rate": 85.3},
-              {"city": "Warrnambool","lat": -38.3818,  "lon": 142.487,  "rate": 84.4}
-            ]},
-            "mark": {"type": "circle", "opacity": 0.9, "stroke": "#0f172a", "strokeWidth": 1.5},
-            "transform": [{"calculate": "datum.rate", "as": "rateSize"}],
-            "encoding": {
-              "longitude": {"field": "lon", "type": "quantitative"},
-              "latitude":  {"field": "lat", "type": "quantitative"},
-              "size":  {"field": "rateSize", "type": "quantitative", "scale": {"range": [120, 600]}, "legend": null},
-              "color": {"field": "rate", "type": "quantitative", "scale": {"scheme": "plasma", "domain": [70, 95]}, "legend": {"title": "Rate (%)", "gradientLength": 160}},
-              "tooltip": [{"field": "city", "title": "City"}, {"field": "rate", "title": "Rate (%)"}]
-            }
-          },
-          {
-            "data": {"values": [
-              {"city": "Melbourne",   "lat": -37.8136, "lon": 144.9631},
-              {"city": "Geelong",     "lat": -38.1499, "lon": 144.3617},
-              {"city": "Ballarat",    "lat": -37.5622, "lon": 143.8503},
-              {"city": "Bendigo",     "lat": -36.757,  "lon": 144.2794},
-              {"city": "Shepparton", "lat": -36.3805,  "lon": 145.3993},
-              {"city": "Mildura",     "lat": -34.208,  "lon": 142.136},
-              {"city": "Traralgon",  "lat": -38.1953,  "lon": 146.5415},
-              {"city": "Warrnambool","lat": -38.3818,  "lon": 142.487}
-            ]},
-            "mark": {"type": "text", "dy": -14, "fontSize": 11, "fontWeight": "bold", "color": "#e2e8f0"},
-            "encoding": {
-              "longitude": {"field": "lon", "type": "quantitative"},
-              "latitude":  {"field": "lat", "type": "quantitative"},
-              "text": {"field": "city"}
-            }
-          }
-        ]
-      }]
+      "calculate": "datum.Amount / datum.TotalAmount",
+      "as": "Percent"
     }
-  ]
+  ],
+
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 50,
+        "outerRadius": 70,
+        "stroke": "#ffffff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "theta": {
+          "field": "Amount",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Gender",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Male", "Female"],
+            "range": ["#60a5fa", "#fb7185"]
+          },
+          "legend": {
+            "orient": "bottom"
+          }
+        },
+        "tooltip": [
+          {"field":"Age"},
+          {"field":"Gender"},
+          {"field":"Amount","title":"Participants (000s)"},
+          {"field": "Percent", "title": "Share", "format": ".1%"}
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 22,
+        "fontWeight": "bold",
+        "color": "#f8fafc",
+        "align": "center",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "text": {"field": "Age"}
+      }
+    }
+  ],
+
+  "view": {
+    "stroke": null
+  }
+},
+    {
+     "title": "Year-over-Year Participation Growth",
+     "width": 350,
+     "height": 250,
+     "data": {
+      "values": [
+       {
+        "Year": "2020",
+        "Gender": "Male",
+        "Rate": 84.2
+       },
+       {
+        "Year": "2020",
+        "Gender": "Female",
+        "Rate": 82.5
+       },
+       {
+        "Year": "2021",
+        "Gender": "Male",
+        "Rate": 85.0
+       },
+       {
+        "Year": "2021",
+        "Gender": "Female",
+        "Rate": 83.1
+       },
+       {
+        "Year": "2022",
+        "Gender": "Male",
+        "Rate": 85.8
+       },
+       {
+        "Year": "2022",
+        "Gender": "Female",
+        "Rate": 84.6
+       },
+       {
+        "Year": "2023",
+        "Gender": "Male",
+        "Rate": 86.9
+       },
+       {
+        "Year": "2023",
+        "Gender": "Female",
+        "Rate": 85.4
+       },
+       {
+        "Year": "2024",
+        "Gender": "Male",
+        "Rate": 87.5
+       },
+       {
+        "Year": "2024",
+        "Gender": "Female",
+        "Rate": 86.8
+       },
+       {
+        "Year": "2025",
+        "Gender": "Male",
+        "Rate": 88.4
+       },
+       {
+        "Year": "2025",
+        "Gender": "Female",
+        "Rate": 87.9
+       },
+       {
+        "Year": "2026",
+        "Gender": "Male",
+        "Rate": 89.1
+       },
+       {
+        "Year": "2026",
+        "Gender": "Female",
+        "Rate": 88.5
+       }
+      ]
+     },
+     "transform": [
+      {
+       "sort": [
+        {
+         "field": "Year"
+        }
+       ],
+       "window": [
+        {
+         "op": "lag",
+         "field": "Rate",
+         "as": "PrevRate"
+        }
+       ],
+       "groupby": [
+        "Gender"
+       ]
+      },
+      {
+       "calculate": "datum.PrevRate === null ? 0 : datum.Rate - datum.PrevRate",
+       "as": "YoYChange"
+      },
+      {
+       "filter": "datum.PrevRate !== null"
+      }
+     ],
+     "layer": [
+      {
+       "mark": {
+        "type": "line",
+        "point": {
+         "filled": true,
+         "size": 50
+        },
+        "strokeWidth": 3
+       },
+       "encoding": {
+        "x": {
+         "field": "Year",
+         "type": "temporal",
+         "timeUnit": "year",
+         "axis": {
+          "title": "Year",
+          "format": "%Y"
+         }
+        },
+        "y": {
+         "field": "YoYChange",
+         "type": "quantitative",
+         "axis": {
+          "title": "Annual Change (% points)"
+         }
+        },
+        "color": {
+         "field": "Gender",
+         "type": "nominal",
+         "scale": {
+          "domain": [
+           "Male",
+           "Female"
+          ],
+          "range": [
+           "#3b82f6",
+           "#f472b6"
+          ]
+         }
+        },
+        "tooltip": [
+         {
+          "field": "Year",
+          "timeUnit": "year",
+          "title": "Year",
+          "format": "%Y"
+         },
+         {
+          "field": "Gender"
+         },
+         {
+          "field": "Rate",
+          "title": "Current Rate (%)",
+          "format": ".1f"
+         },
+         {
+          "field": "PrevRate",
+          "title": "Previous Rate (%)",
+          "format": ".1f"
+         },
+         {
+          "field": "YoYChange",
+          "title": "Net Change (% pts)",
+          "format": "+.1f"
+         }
+        ]
+       }
+      },
+      {
+       "mark": {
+        "type": "text",
+        "dy": -12,
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "#cbd5e1"
+       },
+       "encoding": {
+        "x": {
+         "field": "Year",
+         "type": "temporal",
+         "timeUnit": "year"
+        },
+        "y": {
+         "field": "YoYChange",
+         "type": "quantitative"
+        },
+        "text": {
+         "field": "YoYChange",
+         "type": "quantitative",
+         "format": "+.1f"
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "hconcat": [
+    {
+     "title": "Activity Type Mix by Age Group",
+     "width": 350,
+     "height": 250,
+     "data": {
+      "values": [
+       {
+        "Age": "15-17",
+        "Type": "Sport only",
+        "Rate": 18.1
+       },
+       {
+        "Age": "15-17",
+        "Type": "Non-sport only",
+        "Rate": 13.1
+       },
+       {
+        "Age": "15-17",
+        "Type": "Both",
+        "Rate": 55.7
+       },
+       {
+        "Age": "18-24",
+        "Type": "Sport only",
+        "Rate": 20.1
+       },
+       {
+        "Age": "18-24",
+        "Type": "Non-sport only",
+        "Rate": 19.3
+       },
+       {
+        "Age": "18-24",
+        "Type": "Both",
+        "Rate": 48.4
+       },
+       {
+        "Age": "25-34",
+        "Type": "Sport only",
+        "Rate": 17.4
+       },
+       {
+        "Age": "25-34",
+        "Type": "Non-sport only",
+        "Rate": 25.8
+       },
+       {
+        "Age": "25-34",
+        "Type": "Both",
+        "Rate": 47.6
+       },
+       {
+        "Age": "35-44",
+        "Type": "Sport only",
+        "Rate": 15.6
+       },
+       {
+        "Age": "35-44",
+        "Type": "Non-sport only",
+        "Rate": 32.2
+       },
+       {
+        "Age": "35-44",
+        "Type": "Both",
+        "Rate": 41.3
+       },
+       {
+        "Age": "45-54",
+        "Type": "Sport only",
+        "Rate": 12.2
+       },
+       {
+        "Age": "45-54",
+        "Type": "Non-sport only",
+        "Rate": 40.2
+       },
+       {
+        "Age": "45-54",
+        "Type": "Both",
+        "Rate": 38.5
+       },
+       {
+        "Age": "55-64",
+        "Type": "Sport only",
+        "Rate": 6.0
+       },
+       {
+        "Age": "55-64",
+        "Type": "Non-sport only",
+        "Rate": 47.2
+       },
+       {
+        "Age": "55-64",
+        "Type": "Both",
+        "Rate": 36.1
+       },
+       {
+        "Age": "65+",
+        "Type": "Sport only",
+        "Rate": 6.7
+       },
+       {
+        "Age": "65+",
+        "Type": "Non-sport only",
+        "Rate": 50.8
+       },
+       {
+        "Age": "65+",
+        "Type": "Both",
+        "Rate": 21.6
+       }
+      ]
+     },
+     "mark": {
+      "type": "bar"
+     },
+     "encoding": {
+      "x": {
+       "field": "Age",
+       "type": "ordinal",
+       "sort": [
+        "15-17",
+        "18-24",
+        "25-34",
+        "35-44",
+        "45-54",
+        "55-64",
+        "65+"
+       ],
+       "axis": {
+        "title": "Age Group"
+       }
+      },
+      "y": {
+       "field": "Rate",
+       "type": "quantitative",
+       "stack": "normalize",
+       "axis": {
+        "title": "Share",
+        "format": ".0%"
+       }
+      },
+      "color": {
+       "field": "Type",
+       "type": "nominal",
+       "scale": {
+        "domain": [
+         "Sport only",
+         "Non-sport only",
+         "Both"
+        ],
+        "range": [
+         "#3b82f6",
+         "#10b981",
+         "#f59e0b"
+        ]
+       },
+       "legend": {
+        "title": "Activity type"
+       }
+      },
+      "tooltip": [
+       {
+        "field": "Age"
+       },
+       {
+        "field": "Type"
+       },
+       {
+        "field": "Rate",
+        "title": "Rate (%)"
+       }
+      ]
+     }
+    },
+    {
+     "title": "Top Barriers to Participation by Gender",
+     "width": 350,
+     "height": 250,
+     "data": {
+      "values": [
+       {
+        "Barrier": "Poor health/injury",
+        "Gender": "Male",
+        "Rate": 20.4
+       },
+       {
+        "Barrier": "Poor health/injury",
+        "Gender": "Female",
+        "Rate": 26.3
+       },
+       {
+        "Barrier": "Increasing age",
+        "Gender": "Male",
+        "Rate": 16.8
+       },
+       {
+        "Barrier": "Increasing age",
+        "Gender": "Female",
+        "Rate": 22.4
+       },
+       {
+        "Barrier": "Don't like sport",
+        "Gender": "Male",
+        "Rate": 12.2
+       },
+       {
+        "Barrier": "Don't like sport",
+        "Gender": "Female",
+        "Rate": 19.3
+       },
+       {
+        "Barrier": "Disability",
+        "Gender": "Male",
+        "Rate": 12.9
+       },
+       {
+        "Barrier": "Disability",
+        "Gender": "Female",
+        "Rate": 15.7
+       },
+       {
+        "Barrier": "Not enough time",
+        "Gender": "Male",
+        "Rate": 13.8
+       },
+       {
+        "Barrier": "Not enough time",
+        "Gender": "Female",
+        "Rate": 14.9
+       },
+       {
+        "Barrier": "Too lazy",
+        "Gender": "Male",
+        "Rate": 19.0
+       },
+       {
+        "Barrier": "Too lazy",
+        "Gender": "Female",
+        "Rate": 15.2
+       },
+       {
+        "Barrier": "Not a priority",
+        "Gender": "Male",
+        "Rate": 15.6
+       },
+       {
+        "Barrier": "Not a priority",
+        "Gender": "Female",
+        "Rate": 11.3
+       },
+       {
+        "Barrier": "Can't afford it",
+        "Gender": "Male",
+        "Rate": 3.6
+       },
+       {
+        "Barrier": "Can't afford it",
+        "Gender": "Female",
+        "Rate": 7.5
+       }
+      ]
+     },
+     "mark": {
+      "type": "bar",
+      "cornerRadiusTopLeft": 4,
+      "cornerRadiusTopRight": 4
+     },
+     "encoding": {
+      "x": {
+       "field": "Barrier",
+       "type": "nominal",
+       "axis": {
+        "title": null,
+        "labelAngle": -30,
+        "labelLimit": 90
+       }
+      },
+      "y": {
+       "field": "Rate",
+       "type": "quantitative",
+       "axis": {
+        "title": "Non-participants (%)"
+       }
+      },
+      "color": {
+       "field": "Gender",
+       "type": "nominal",
+       "scale": {
+        "domain": [
+         "Male",
+         "Female"
+        ],
+        "range": [
+         "#3b82f6",
+         "#f472b6"
+        ]
+       }
+      },
+      "xOffset": {
+       "field": "Gender",
+       "type": "nominal"
+      },
+      "tooltip": [
+       {
+        "field": "Barrier"
+       },
+       {
+        "field": "Gender"
+       },
+       {
+        "field": "Rate",
+        "title": "Rate (%)"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "hconcat": [
+    {
+     "title": "Participation Rate by Household Income",
+     "width": 350,
+     "height": 250,
+     "data": {
+      "values": [
+       {
+        "Income": "<$40k",
+        "Rate": 76.7
+       },
+       {
+        "Income": "$40k-$70k",
+        "Rate": 81.2
+       },
+       {
+        "Income": "$70k-$100k",
+        "Rate": 88.1
+       },
+       {
+        "Income": "$100k-$150k",
+        "Rate": 91.2
+       },
+       {
+        "Income": "$150k-$200k",
+        "Rate": 94.1
+       },
+       {
+        "Income": "$200k+",
+        "Rate": 95.0
+       }
+      ]
+     },
+     "encoding": {
+      "x": {
+       "field": "Income",
+       "type": "ordinal",
+       "sort": null,
+       "axis": {
+        "title": "Annual Household Income",
+        "labelAngle": -30
+       }
+      },
+      "y": {
+       "field": "Rate",
+       "type": "quantitative",
+       "axis": {
+        "title": "Participation Rate (%)"
+       }
+      }
+     },
+     "layer": [
+      {
+       "mark": {
+        "type": "area",
+        "clip": true,
+        "line": {
+         "color": "#a855f7",
+         "strokeWidth": 3
+        },
+        "point": {
+         "filled": true,
+         "size": 80,
+         "fill": "#a855f7"
+        },
+        "color": {
+         "gradient": "linear",
+         "x1": 0,
+         "y1": 0,
+         "x2": 0,
+         "y2": 1,
+         "stops": [
+          {
+           "offset": 0,
+           "color": "rgba(168,85,247,0.55)"
+          },
+          {
+           "offset": 1,
+           "color": "rgba(168,85,247,0.05)"
+          }
+         ]
+        }
+       },
+       "encoding": {
+        "tooltip": [
+         {
+          "field": "Income"
+         },
+         {
+          "field": "Rate",
+          "title": "Rate (%)"
+         }
+        ]
+       }
+      },
+      {
+       "mark": {
+        "type": "text",
+        "dy": -12,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#c4b5fd"
+       },
+       "encoding": {
+        "text": {
+         "field": "Rate",
+         "type": "quantitative",
+         "format": ".1f"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "title": "Participation Rate by Education Level",
+     "width": 350,
+     "height": 250,
+     "data": {
+      "values": [
+       {
+        "Education": "Uni degree+",
+        "Rate": 93.5,
+        "Avg": 84.3
+       },
+       {
+        "Education": "Diploma",
+        "Rate": 85.2,
+        "Avg": 84.3
+       },
+       {
+        "Education": "Certificate/Trade",
+        "Rate": 84.6,
+        "Avg": 84.3
+       },
+       {
+        "Education": "Secondary school",
+        "Rate": 85.4,
+        "Avg": 84.3
+       },
+       {
+        "Education": "Still at school",
+        "Rate": 87.5,
+        "Avg": 84.3
+       },
+       {
+        "Education": "Did not complete",
+        "Rate": 69.4,
+        "Avg": 84.3
+       }
+      ]
+     },
+     "transform": [
+      {
+       "calculate": "datum.Rate - datum.Avg",
+       "as": "Delta"
+      }
+     ],
+     "layer": [
+      {
+       "mark": {
+        "type": "rule",
+        "color": "#475569",
+        "strokeWidth": 1
+       },
+       "encoding": {
+        "y": {
+         "field": "Education",
+         "type": "nominal",
+         "sort": [
+          "Uni degree+",
+          "Diploma",
+          "Certificate/Trade",
+          "Secondary school",
+          "Still at school",
+          "Did not complete"
+         ],
+         "axis": {
+          "title": null,
+          "labelLimit": 160
+         }
+        },
+        "x": {
+         "field": "Avg",
+         "type": "quantitative"
+        },
+        "x2": {
+         "field": "Rate",
+         "type": "quantitative"
+        }
+       }
+      },
+      {
+       "mark": {
+        "type": "rule",
+        "color": "#64748b",
+        "strokeWidth": 1,
+        "strokeDash": [
+         4,
+         3
+        ]
+       },
+       "encoding": {
+        "x": {
+         "datum": 84.3
+        }
+       }
+      },
+      {
+       "mark": {
+        "type": "circle",
+        "size": 110
+       },
+       "encoding": {
+        "y": {
+         "field": "Education",
+         "type": "nominal",
+         "sort": [
+          "Uni degree+",
+          "Diploma",
+          "Certificate/Trade",
+          "Secondary school",
+          "Still at school",
+          "Did not complete"
+         ]
+        },
+        "x": {
+         "field": "Rate",
+         "type": "quantitative",
+         "axis": {
+          "title": "Participation Rate (%)"
+         }
+        },
+        "color": {
+         "field": "Delta",
+         "type": "quantitative",
+         "scale": {
+          "scheme": "redyellowgreen",
+          "domain": [
+           -20,
+           20
+          ]
+         },
+         "legend": {
+          "title": "vs avg (%)"
+         }
+        },
+        "tooltip": [
+         {
+          "field": "Education"
+         },
+         {
+          "field": "Rate",
+          "title": "Rate (%)"
+         },
+         {
+          "field": "Delta",
+          "title": "vs Avg",
+          "format": "+.1f"
+         }
+        ]
+       }
+      },
+      {
+       "mark": {
+        "type": "text",
+        "dx": 10,
+        "fontSize": 10,
+        "fontWeight": "bold"
+       },
+       "encoding": {
+        "y": {
+         "field": "Education",
+         "type": "nominal",
+         "sort": [
+          "Uni degree+",
+          "Diploma",
+          "Certificate/Trade",
+          "Secondary school",
+          "Still at school",
+          "Did not complete"
+         ]
+        },
+        "x": {
+         "field": "Rate",
+         "type": "quantitative"
+        },
+        "text": {
+         "field": "Delta",
+         "type": "quantitative",
+         "format": "+.1f"
+        },
+        "color": {
+         "field": "Delta",
+         "type": "quantitative",
+         "scale": {
+          "scheme": "redyellowgreen",
+          "domain": [
+           -20,
+           20
+          ]
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "hconcat": [
+    {
+     "title": "Participation Rate: Disability & ATSI Status",
+     "width": 350,
+     "height": 250,
+     "data": {
+      "values": [
+       {
+        "Dimension": "Disability",
+        "Group": "No disability",
+        "Rate": 90.5,
+        "Side": "Advantaged"
+       },
+       {
+        "Dimension": "Disability",
+        "Group": "Has disability",
+        "Rate": -73.0,
+        "Side": "Disadvantaged"
+       },
+       {
+        "Dimension": "ATSI Origin",
+        "Group": "Non-Indigenous",
+        "Rate": 88.1,
+        "Side": "Advantaged"
+       },
+       {
+        "Dimension": "ATSI Origin",
+        "Group": "Aboriginal/TSI",
+        "Rate": -77.8,
+        "Side": "Disadvantaged"
+       }
+      ]
+     },
+     "layer": [
+      {
+       "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 5
+       },
+       "encoding": {
+        "y": {
+         "field": "Dimension",
+         "type": "nominal",
+         "axis": {
+          "title": null,
+          "labelColor": "#cbd5e1"
+         }
+        },
+        "x": {
+         "field": "Rate",
+         "type": "quantitative",
+         "scale": {
+          "domain": [
+           -100,
+           100
+          ]
+         },
+         "axis": {
+          "title": "Participation Rate (%)"
+         }
+        },
+        "color": {
+         "field": "Side",
+         "type": "nominal",
+         "scale": {
+          "domain": [
+           "Advantaged",
+           "Disadvantaged"
+          ],
+          "range": [
+           "#06b6d4",
+           "#f59e0b"
+          ]
+         }
+        },
+        "tooltip": [
+         {
+          "field": "Group"
+         },
+         {
+          "field": "Rate"
+         }
+        ]
+       }
+      },
+      {
+       "mark": {
+        "type": "rule",
+        "color": "#64748b",
+        "strokeWidth": 2
+       },
+       "encoding": {
+        "x": {
+         "datum": 0
+        }
+       }
+      },
+      {
+       "mark": {
+        "type": "text",
+        "fontWeight": "bold",
+        "fontSize": 11,
+        "dy": -18
+       },
+       "encoding": {
+        "y": {
+         "field": "Dimension",
+         "type": "nominal"
+        },
+        "x": {
+         "field": "Rate",
+         "type": "quantitative"
+        },
+        "text": {
+         "field": "Group"
+        },
+        "color": {
+         "field": "Side",
+         "type": "nominal",
+         "scale": {
+          "domain": [
+           "Advantaged",
+           "Disadvantaged"
+          ],
+          "range": [
+           "#67e8f9",
+           "#fde68a"
+          ]
+         },
+         "legend": null
+        }
+       }
+      }
+     ]
+    },
+    {
+     "title": "Top Motivations for Participation",
+     "width": 350,
+     "height": 250,
+     "data": {
+      "values": [
+       {
+        "Motivation": "Physical health/fitness",
+        "Rate": 65.6
+       },
+       {
+        "Motivation": "Fun/enjoyment",
+        "Rate": 58.1
+       },
+       {
+        "Motivation": "Weight management/tone",
+        "Rate": 52.8
+       },
+       {
+        "Motivation": "To be outdoors",
+        "Rate": 50.7
+       },
+       {
+        "Motivation": "Social reasons",
+        "Rate": 44.3
+       },
+       {
+        "Motivation": "Mental health/therapy",
+        "Rate": 37.3
+       },
+       {
+        "Motivation": "Sense of achievement",
+        "Rate": 31.9
+       },
+       {
+        "Motivation": "Hobby",
+        "Rate": 29.8
+       }
+      ]
+     },
+     "layer": [
+      {
+       "mark": {
+        "type": "rule",
+        "strokeWidth": 2,
+        "color": "#10b981",
+        "opacity": 0.5
+       },
+       "encoding": {
+        "y": {
+         "field": "Motivation",
+         "type": "nominal",
+         "sort": "-x",
+         "axis": {
+          "title": null,
+          "labelLimit": 160
+         }
+        },
+        "x": {
+         "field": "Rate",
+         "type": "quantitative",
+         "axis": {
+          "title": "Participants (%)"
+         }
+        },
+        "x2": {
+         "value": 0
+        }
+       }
+      },
+      {
+       "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 100
+       },
+       "encoding": {
+        "y": {
+         "field": "Motivation",
+         "type": "nominal",
+         "sort": "-x",
+         "axis": {
+          "title": null,
+          "labelLimit": 160
+         }
+        },
+        "x": {
+         "field": "Rate",
+         "type": "quantitative",
+         "axis": {
+          "title": "Participants (%)"
+         }
+        },
+        "color": {
+         "field": "Rate",
+         "type": "quantitative",
+         "scale": {
+          "scheme": "greens"
+         },
+         "legend": null
+        },
+        "tooltip": [
+         {
+          "field": "Motivation"
+         },
+         {
+          "field": "Rate",
+          "title": "Rate (%)"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "hconcat": [
+    {
+     "title": "Participation Heatmap (Age × Gender)",
+     "width": 350,
+     "height": 250,
+     "data": {
+      "values": [
+       {
+        "Age": "15-17",
+        "Gender": "Male",
+        "Rate": 86.1
+       },
+       {
+        "Age": "15-17",
+        "Gender": "Female",
+        "Rate": 88.4
+       },
+       {
+        "Age": "18-24",
+        "Gender": "Male",
+        "Rate": 88.2
+       },
+       {
+        "Age": "18-24",
+        "Gender": "Female",
+        "Rate": 87.5
+       },
+       {
+        "Age": "25-34",
+        "Gender": "Male",
+        "Rate": 91.8
+       },
+       {
+        "Age": "25-34",
+        "Gender": "Female",
+        "Rate": 89.8
+       },
+       {
+        "Age": "35-44",
+        "Gender": "Male",
+        "Rate": 90.2
+       },
+       {
+        "Age": "35-44",
+        "Gender": "Female",
+        "Rate": 88.1
+       },
+       {
+        "Age": "45-54",
+        "Gender": "Male",
+        "Rate": 92.3
+       },
+       {
+        "Age": "45-54",
+        "Gender": "Female",
+        "Rate": 89.5
+       },
+       {
+        "Age": "55-64",
+        "Gender": "Male",
+        "Rate": 88.3
+       },
+       {
+        "Age": "55-64",
+        "Gender": "Female",
+        "Rate": 90.4
+       },
+       {
+        "Age": "65+",
+        "Gender": "Male",
+        "Rate": 81.3
+       },
+       {
+        "Age": "65+",
+        "Gender": "Female",
+        "Rate": 77.8
+       }
+      ]
+     },
+     "layer": [
+      {
+       "mark": {
+        "type": "rect"
+       },
+       "encoding": {
+        "x": {
+         "field": "Age",
+         "type": "ordinal",
+         "sort": [
+          "15-17",
+          "18-24",
+          "25-34",
+          "35-44",
+          "45-54",
+          "55-64",
+          "65+"
+         ]
+        },
+        "y": {
+         "field": "Gender",
+         "type": "nominal"
+        },
+        "color": {
+         "field": "Rate",
+         "type": "quantitative",
+         "scale": {
+          "scheme": "viridis",
+          "domain": [
+           70,
+           100
+          ]
+         },
+         "legend": {
+          "title": "Rate (%)"
+         }
+        },
+        "tooltip": [
+         {
+          "field": "Age",
+          "title": "Age Group"
+         },
+         {
+          "field": "Gender"
+         },
+         {
+          "field": "Rate",
+          "title": "Rate (%)"
+         }
+        ]
+       }
+      },
+      {
+       "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": "bold"
+       },
+       "encoding": {
+        "x": {
+         "field": "Age",
+         "type": "ordinal",
+         "sort": [
+          "15-17",
+          "18-24",
+          "25-34",
+          "35-44",
+          "45-54",
+          "55-64",
+          "65+"
+         ]
+        },
+        "y": {
+         "field": "Gender",
+         "type": "nominal"
+        },
+        "text": {
+         "field": "Rate",
+         "type": "quantitative",
+         "format": ".1f"
+        },
+        "color": {
+         "condition": {
+          "test": "datum.Rate > 88",
+          "value": "#0f172a"
+         },
+         "value": "#e2e8f0"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "title": "Where Adults are Active",
+     "width": 350,
+     "height": 250,
+     "data": {
+      "values": [
+       {
+        "Place": "Public space",
+        "Rate": 63.1
+       },
+       {
+        "Place": "Gym/fitness/leisure",
+        "Rate": 31.5
+       },
+       {
+        "Place": "Home environment",
+        "Rate": 30.4
+       },
+       {
+        "Place": "Free community",
+        "Rate": 21.8
+       },
+       {
+        "Place": "Sports club",
+        "Rate": 19.9
+       },
+       {
+        "Place": "Private/commercial",
+        "Rate": 17.1
+       },
+       {
+        "Place": "Recreation club",
+        "Rate": 9.4
+       }
+      ]
+     },
+     "layer": [
+      {
+       "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 4
+       },
+       "encoding": {
+        "y": {
+         "field": "Place",
+         "type": "nominal",
+         "sort": "-x",
+         "axis": {
+          "title": null
+         }
+        },
+        "x": {
+         "field": "Rate",
+         "type": "quantitative",
+         "axis": {
+          "title": "Adults (%)"
+         }
+        },
+        "color": {
+         "field": "Rate",
+         "type": "quantitative",
+         "scale": {
+          "scheme": "tealblues"
+         },
+         "legend": null
+        },
+        "tooltip": [
+         {
+          "field": "Place",
+          "title": "Venue"
+         },
+         {
+          "field": "Rate",
+          "title": "Rate (%)"
+         }
+        ]
+       }
+      },
+      {
+       "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "#94a3b8"
+       },
+       "encoding": {
+        "y": {
+         "field": "Place",
+         "type": "nominal",
+         "sort": "-x"
+        },
+        "x": {
+         "field": "Rate",
+         "type": "quantitative"
+        },
+        "text": {
+         "field": "Rate",
+         "type": "quantitative",
+         "format": ".1f"
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "hconcat": [
+    {
+     "title": "Victoria — Participation Rate by Remoteness Area",
+     "width": 750,
+     "height": 380,
+     "projection": {
+      "type": "mercator"
+     },
+     "resolve": {
+      "scale": {
+       "color": "independent",
+       "size": "independent"
+      }
+     },
+     "layer": [
+      {
+       "data": {
+        "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
+        "format": {
+         "type": "json",
+         "property": "features"
+        }
+       },
+       "transform": [
+        {
+         "filter": "datum.properties.STATE_NAME == 'Victoria'"
+        }
+       ],
+       "mark": {
+        "type": "geoshape",
+        "fill": "#1e3a5f",
+        "stroke": "#475569",
+        "strokeWidth": 2
+       }
+      },
+      {
+       "data": {
+        "values": [
+         {
+          "city": "Melbourne",
+          "lat": -37.8136,
+          "lon": 144.9631,
+          "rate": 88.2,
+          "area": "Major city"
+         },
+         {
+          "city": "Geelong",
+          "lat": -38.1499,
+          "lon": 144.3617,
+          "rate": 85.3,
+          "area": "Inner regional"
+         },
+         {
+          "city": "Ballarat",
+          "lat": -37.5622,
+          "lon": 143.8503,
+          "rate": 85.3,
+          "area": "Inner regional"
+         },
+         {
+          "city": "Bendigo",
+          "lat": -36.757,
+          "lon": 144.2794,
+          "rate": 85.3,
+          "area": "Inner regional"
+         },
+         {
+          "city": "Shepparton",
+          "lat": -36.3805,
+          "lon": 145.3993,
+          "rate": 84.4,
+          "area": "Outer regional"
+         },
+         {
+          "city": "Mildura",
+          "lat": -34.208,
+          "lon": 142.136,
+          "rate": 76.3,
+          "area": "Remote"
+         },
+         {
+          "city": "Traralgon",
+          "lat": -38.1953,
+          "lon": 146.5415,
+          "rate": 84.4,
+          "area": "Outer regional"
+         },
+         {
+          "city": "Warrnambool",
+          "lat": -38.3818,
+          "lon": 142.487,
+          "rate": 84.4,
+          "area": "Outer regional"
+         }
+        ]
+       },
+       "mark": {
+        "type": "circle",
+        "opacity": 0.9,
+        "stroke": "#0f172a",
+        "strokeWidth": 1.5
+       },
+       "transform": [
+        {
+         "calculate": "datum.rate",
+         "as": "rateSize"
+        }
+       ],
+       "encoding": {
+        "longitude": {
+         "field": "lon",
+         "type": "quantitative"
+        },
+        "latitude": {
+         "field": "lat",
+         "type": "quantitative"
+        },
+        "size": {
+         "field": "rateSize",
+         "type": "quantitative",
+         "scale": {
+          "range": [
+           120,
+           600
+          ]
+         },
+         "legend": null
+        },
+        "color": {
+         "field": "rate",
+         "type": "quantitative",
+         "scale": {
+          "scheme": "plasma",
+          "domain": [
+           70,
+           95
+          ]
+         },
+         "legend": {
+          "title": "Rate (%)",
+          "gradientLength": 160
+         }
+        },
+        "tooltip": [
+         {
+          "field": "city",
+          "title": "City"
+         },
+         {
+          "field": "area",
+          "title": "Remoteness"
+         },
+         {
+          "field": "rate",
+          "title": "Rate (%)"
+         }
+        ]
+       }
+      },
+      {
+       "data": {
+        "values": [
+         {
+          "city": "Melbourne",
+          "lat": -37.8136,
+          "lon": 144.9631
+         },
+         {
+          "city": "Geelong",
+          "lat": -38.1499,
+          "lon": 144.3617
+         },
+         {
+          "city": "Ballarat",
+          "lat": -37.5622,
+          "lon": 143.8503
+         },
+         {
+          "city": "Bendigo",
+          "lat": -36.757,
+          "lon": 144.2794
+         },
+         {
+          "city": "Shepparton",
+          "lat": -36.3805,
+          "lon": 145.3993
+         },
+         {
+          "city": "Mildura",
+          "lat": -34.208,
+          "lon": 142.136
+         },
+         {
+          "city": "Traralgon",
+          "lat": -38.1953,
+          "lon": 146.5415
+         },
+         {
+          "city": "Warrnambool",
+          "lat": -38.3818,
+          "lon": 142.487
+         }
+        ]
+       },
+       "mark": {
+        "type": "text",
+        "dy": -16,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#cbd5e1"
+       },
+       "encoding": {
+        "longitude": {
+         "field": "lon",
+         "type": "quantitative"
+        },
+        "latitude": {
+         "field": "lat",
+         "type": "quantitative"
+        },
+        "text": {
+         "field": "city"
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
 }
